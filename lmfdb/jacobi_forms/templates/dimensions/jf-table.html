@@ -1,0 +1,43 @@
+{% set L = table.keys()[0] %}
+
+<table>
+  <thead>
+    <tr>
+      <th>$h\backslash k$</th>
+      {% set a = table[L] %}
+      {% for k in a[a.keys()[0]].keys()|sort() %}
+      <th>${{ k|int }}{% if k|int != k %}\tfrac 12{% endif %}$</th>
+      {% endfor %}      
+    </tr>
+    {% for h in a.keys()|sort() %}
+    <tr class = "{{ loop.cycle( 'odd', 'even') }}">
+      <th align = "left">${{ h }}$</th>     
+      {% for k in a[h]|sort() %}      
+      <td>${{ a[h][k] }}$</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    </tr>
+  </thead>
+</table>
+
+<p>
+  The table displays dimensions for spaces $J_{k,L}\big(\varepsilon^h\big)$,
+  where $L$ is
+  {% if table|length > 1 %}
+  one of the following lattices{% else %}the following lattice{% endif %}.
+</p>
+
+  <table>
+    <thead>
+      <tr>
+	<th>Name</th><th>rank</th><th>Gram matrix</th><th>det.</th><th>level</th>
+      </tr>
+    </thead>
+    {% for L in table %}
+    <tr>
+      <th>$L$</th><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
+      <td>${{ L.det() }}$</td><td>${{ L.level() }}$</td>
+    </tr>
+    {% endfor %}
+  </table>

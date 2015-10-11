@@ -19,8 +19,9 @@ def dimension( nargs):
     wts = nargs.get( 'weight_field')
     if None == wts:
         # k - h/2 must be integral since otherwise $J_{k,L}(\varepsilon^h)=0$
-        ps = set( map( lambda h: Integer(h%2), chars))
-        wts = [ ((n-p)/2).ceil() + p/2 + k for k in range(20) for p in ps]
+        ps = set( map( lambda h: Integer(h)%2, chars))
+        wts = [ ((n-p)/2).ceil() + p/2 + k for k in range(10) for p in ps]
+        print ps, ((n-p)/2).ceil() + p/2
     else:
         wts = map( lambda k: Rational(k), wts)
 

@@ -175,6 +175,7 @@ def prepare_dimensions_page( args, bread):
         header, table = caller.dimension( nargs)
         info.update( { 'table': table,
                        'table_headers': header,
+                       'viewer': 'dimensions/jf-table.html'
                       })
     except Exception as e:
         info.update( {'error': str(e)})    
