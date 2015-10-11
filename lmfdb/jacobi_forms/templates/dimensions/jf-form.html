@@ -1,0 +1,33 @@
+{% block javascript %}
+<script src = "/static/jf-validate.js"></script>
+{% endblock %}
+
+<form action="/JacobiForm/Q/dimensions" method="get"
+      onSubmit="return pack_args( { 'weight_field': half_ints, 'index_field': index, 'character_field': mod24})">
+  <input type = "hidden" id = "args" name = "args" />
+  <table> 
+    <tr>
+      <td> 
+	<label>weight(s)</label>
+	<input type="text" id="weight_field" placeholder="6+20" pattern="[\d\.\+\ ]+" />
+	<span class="formexample">e.g. 2 or 20+10 or 20+26 4</span>
+      </td>
+      <td> 
+	<label>*index</label>
+	<input type="text" id="index_field" placeholder="E_6" required />
+	<span class="formexample">e.g. 2 or [2,1,4] or A_4</span>
+      </td>
+      <td> 
+	<label>character(s)</label>
+	<input type="text" id="character_field" placeholder="0+23" pattern="[\d\+\ ]+" />
+	<span class="formexample">e.g. 2 or 2 4 6 or 0+23</span>
+      </td>
+      <td> 
+	<button type="submit" value="submit">Find</button>
+      </td>
+    </tr>
+  </table> 
+</form>
+
+
+

@@ -1,0 +1,1 @@
+../jacobi_forms/static/jf-validate.js

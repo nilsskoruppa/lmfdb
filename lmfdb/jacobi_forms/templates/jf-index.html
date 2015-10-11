@@ -1,0 +1,71 @@
+{% extends 'homepage.html' %}
+{% block content %}
+<p>
+  Blabla
+  </a>
+</p> 
+
+<h2>Browse
+  <a class="knowl-title" knowl="mf.jacobi.module">
+    samples
+  </a>
+</h2>
+<p>
+  By collection:
+  {% for col in cols_with_forms|sort( attribute = 'order') %}
+  <a href="{{ col.name() }}">
+    ${{ col.latex_name() }}$ 
+  </a>
+  &nbsp;
+  {% endfor %}
+</p>
+<p>
+  By weight:
+  {% set d = { 1:9,10:19,20:29,30:39,40:49,50:99} %}
+  {% for n in d|sort %}
+  <a href = "{{ url_for( 'JacobiForm_Q_top_level', page='search_results', query='{\"weight\":{ \"$gte\":\"' ~ n ~ '\", \"$lte\":\"' ~ d[n] ~'\"}}') }}">${{ n }}$-${{ d[n] }}$</a>
+  {% endfor %}  
+</p>
+<p>
+  By index:
+  {% for n in [2,3,4] %}
+  <a href = "{{ url_for( 'JacobiForm_Q_top_level', page='search_results', query='{\"degree\":\"' ~ n ~ '\"}') }}">${{ n }}$</a>
+  {% endfor %}
+</p>
+<p>
+  By character:
+  {% for n in range(24) %}
+  <a href = "{{ url_for( 'JacobiForm_Q_top_level', page='search_results', query='{\"degree\":\"' ~ n ~ '\"}') }}">${{ n }}$</a>
+  {% endfor %}
+</p>
+
+</br>
+
+<h2>Browse collections</h2>
+<p>
+  {% for col in cols|sort( attribute = 'order') %}
+  <a href="{{ col.name() }}">
+    ${{ col.latex_name() }}$
+  </a>
+  &nbsp;
+  {% endfor %}
+</p>
+
+<br/>
+
+<h2>Search for dimensions</h2>
+<p>{% include 'dimensions/jf-form.html' %}</p>
+
+<h2>Search for modules</h2>
+<p>{% include 'modules/jf-form.html' %}</p>
+
+<h2>Search for thetablocks</h2>
+<p>{% include 'thetablocks/jf-form.html' %}</p>
+
+<h2>Search for singular forms</h2>
+<p>{% include 'singular_forms/jf-form.html' %}</p>
+
+<h2>Search for Hecke eigenforms</h2>
+<p>{% include 'eigenforms/jf-form.html' %}</p>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'homepage.html' %}
+{% block content %}
+
+{% if error %}
+<div class="announce error">Error: {{  error }}</div>
+{% else %}
+
+{% if viewer %}
+{% include viewer %}
+{% else %}
+{% include 'jf-raw.html' %}
+{% endif %}
+
+{% endif %}
+
+<h2>New search for dimensions</h2>
+{% include 'dimensions/jf-form.html' %}
+
+{% endblock %}
