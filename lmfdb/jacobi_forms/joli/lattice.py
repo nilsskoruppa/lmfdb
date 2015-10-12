@@ -68,7 +68,7 @@ class Lattice_class (SageObject):
         '2^2'
     """
     
-    def __init__( self, q):
+    def __init__( self, q, name = None):
         """
         We initialize by a list of integers $[a_1,...,a_N]$. The
         lattice self is then $L = (L,\beta) = (G^{-1}\ZZ^n/\ZZ^n, G[x])$,
@@ -111,7 +111,7 @@ class Lattice_class (SageObject):
         self.__dual_vectors = None
         self.__values = None
         self.__chi = {}
-
+        self.__name = name
 
     def _latex_( self):
         return 'The ZZ-lattice $(ZZ^{%d}, x\'Gy)$, where $G = %s$' % (self.__rank, latex(self.__G))
@@ -121,6 +121,12 @@ class Lattice_class (SageObject):
         return 'The ZZ-lattice (ZZ^%d, x^tGy), where G = \n%r' % (self.__rank, self.__G)
 
 
+    def name( self, name = None):
+        if name:
+            self.__name = name
+        return self.__name
+    
+    
     def rank( self):
         return self.__rank
 
