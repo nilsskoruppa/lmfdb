@@ -35,7 +35,49 @@ function half_ints ( input) {
 
 function index ( input) {
 
-    return input;
+    var eos = '\0'; sep = ',', col = ':';
+    var white = new RegExp(/\s/);
+    var inp = input.trim() + eos;
+    var c, key, value;
+
+    var dct = new Object();
+    var state = 0, t = "";
+    
+    for ( var i = 0; i < inp.length; i++) {
+	c = inp[i];
+	
+	switch (state) {
+	case 0:
+	    if ( c == col) {
+		t = t.trim();
+		if ( t.length == 0) throw col + "  without name at place " + i + " in " + input;
+		key = t;
+		t = "";
+		state = 1;
+	    }
+	    else if ( c == sep | c == eos) {
+		t = t.trim();
+		if ( t.length == 0) throw "no definition before place " + i + " in " + input;
+		dct[t] = t;
+		t = "";
+	    }
+	    else t += c;
+	    break;
+	case 1:
+	    if( c == col) throw "Not allowed character " + col + " at place " + i + " in " + input;
+	    if ( c == sep | c == eos) {
+		t = t.trim();
+		if ( t.length == 0) throw "no definition after place " + i + " in " + input;
+		dct[key] = t;
+		t = "";
+		state = 0;
+	    }
+	    else t += c;
+	    break;
+	}
+    }
+
+    return dct;
 }
 
 

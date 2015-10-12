@@ -188,7 +188,7 @@ def prepare_dimensions_page( args, bread):
 
 
 ##########################################################
-## Module REQUEST
+## MODULE REQUEST
 ##########################################################
 def prepare_modules_page( args, bread):
     

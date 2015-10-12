@@ -33,7 +33,7 @@
   </thead>
   {% for L in table %}
   <tr>
-    <th>$L$</th><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
+    <th>${{ L.name() }}$</th><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
     <td>${{ L.det() }}$</td><td>${{ L.level() }}$</td>
   </tr>
   {% endfor %}
@@ -45,8 +45,12 @@
 {% set P = H[h] %}
 {% for p in P %}
 {% set J = P[p] %}
-<h2>$J_{ {{ p }},L}\big(\varepsilon^{{ h }}\big)$</h2>
 
+{% if L.name()|length <= 10 %}
+<h2>$J_{ {{ p }},{{ L.name() }} }\big(\varepsilon^{{ h }}\big)$</h2>
+{% else %}
+<h2>$J_{ {{ p }},L}\big(\varepsilon^{{ h }}\big)$ where $L = {{ L.name() }}$</h2>
+{% endif %}
 <p>
 <table>
   <tr>
@@ -60,7 +64,7 @@
 	</thead>
 	{% set L = J.index() %}
 	<tr>
-	  <td>$L$</td><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
+	  <td>${{ L.name() }}$</td><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
 	  <td>${{ L.det() }}$</td><td>${{ L.level() }}$</td>
 	</tr>
       </table>
