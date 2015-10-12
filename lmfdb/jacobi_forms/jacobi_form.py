@@ -188,7 +188,7 @@ def prepare_dimensions_page( args, bread):
 
 
 ##########################################################
-## HP_POLYNOMIAL REQUEST
+## Module REQUEST
 ##########################################################
 def prepare_modules_page( args, bread):
     
@@ -200,6 +200,7 @@ def prepare_modules_page( args, bread):
         header, table = caller.module( nargs)
         info.update( { 'table': table,
                        'table_headers': header,
+                       'viewer': 'modules/jf-table.html'
                       })
     except Exception as e:
         info.update( {'error': str(e)})    

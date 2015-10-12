@@ -28,16 +28,16 @@
   one of the following lattices{% else %}the following lattice{% endif %}.
 </p>
 
-  <table>
-    <thead>
-      <tr>
-	<th>Name</th><th>rank</th><th>Gram matrix</th><th>det.</th><th>level</th>
-      </tr>
-    </thead>
-    {% for L in table %}
+<table>
+  <thead>
     <tr>
-      <th>$L$</th><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
-      <td>${{ L.det() }}$</td><td>${{ L.level() }}$</td>
+      <th>Name</th><th>rank</th><th>Gram matrix</th><th>det.</th><th>level</th>
     </tr>
-    {% endfor %}
-  </table>
+  </thead>
+  {% for L in table %}
+  <tr>
+    <th>$L$</th><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
+    <td>${{ L.det() }}$</td><td>${{ L.level() }}$</td>
+  </tr>
+  {% endfor %}
+</table>

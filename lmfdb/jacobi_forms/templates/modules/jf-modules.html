@@ -1,6 +1,8 @@
 {% extends 'homepage.html' %}
 {% block content %}
 
+<h1> Data for modules</h1>
+
 {% if error %}
 <div class="announce error">Error: {{  error }}</div>
 {% else %}
@@ -15,5 +17,8 @@
 
 <h2>New search for modules</h2>
 {% include 'modules/jf-form.html' %}
+
+<h1>Miscellaneous</h1>
+{% include ['modules/jf-misc.html', 'jf-Not_available.html'] %}
 
 {% endblock %}
