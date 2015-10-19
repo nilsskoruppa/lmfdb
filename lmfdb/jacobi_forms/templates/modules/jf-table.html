@@ -47,9 +47,9 @@
 {% set J = P[p] %}
 
 {% if L.name()|length <= 10 %}
-<h2>$J_{ {{ p }},{{ L.name() }} }\big(\varepsilon^{{ h }}\big)$</h2>
+<h2>$J_{ \textrm{ {{ p }} },{{ L.name() }} }\big(\varepsilon^{{ h }}\big)$</h2>
 {% else %}
-<h2>$J_{ {{ p }},L}\big(\varepsilon^{{ h }}\big)$ where $L = {{ L.name() }}$</h2>
+<h2>$J_{ \textrm{ {{ p }} },L}\big(\varepsilon^{{ h }}\big)$ where $L = {{ L.name() }}$</h2>
 {% endif %}
 <p>
 <table>
@@ -73,7 +73,7 @@
   <tr><td>Rank</td>  <td>${{ J.rank() }}$</td></tr>
   {% set s,pol = J.Poincare_pol() %}
   <tr><td>Special weight</td>  <td>${{ s }}$</td></tr>
-  <tr><td>Hilbert-Poincar&eacute; polynomial</td>  <td>$u(1-x^4-x^6+x^{10})+{{ pol }}$</td></tr>
+  <tr><td>Hilbert-Poincar&eacute; polynomial</td>  <td>$u(1-x^4-x^6+x^{10})+{{ pol._latex_() }}$</td></tr>
   <tr><td>Hilbert-Poincar&eacute; series</td>  <td>?</td></tr>
   <tr><td>Generators</td>  <td>--- Not available ---</td></tr>
 </table>

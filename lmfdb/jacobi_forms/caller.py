@@ -69,7 +69,7 @@ def module( nargs):
     dct = nargs['index_field']
     lats = []    
     for name in dct:
-        L = joli.LatticeIndex( dct[name])
+        L = LatticeIndex( dct[name])
         L.name( name)
         lats.append( L)
 
