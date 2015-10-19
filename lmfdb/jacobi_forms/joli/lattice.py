@@ -398,6 +398,22 @@ class Lattice_class (SageObject):
         return Lattice_class( [ a*self.beta( e[i],e[j]) for i in range(n) for j in range(i,n)])
         
 
+    def orthogonal_sum( self, L):
+        """
+        Return the orthogonal sum of self with $L$.
+        """
+        e = self.basis()
+        n = len(e)
+        f = L.basis()
+        p = len(f)
+        l = [[ self.beta( e[i],e[j]) for j in range(i,n)] + [0]*p for i in range(n)] 
+        l1 = []
+        for x in l:
+            l1 += x
+        r = [ L.beta( f[i],f[j]) for i in range(p) for j in range(i,p)]            
+        return Lattice_class( l1 + r)
+
+    
     def fqm( self):
         """
         Return a pair $(f,M)$, where $M$ is the discriminant module

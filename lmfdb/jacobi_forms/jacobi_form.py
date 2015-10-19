@@ -35,7 +35,7 @@ def rescan_collection():
             try:
                 if f.endswith('.json'):
                     c = f[:-5]
-                    print c
+                    # print c
                 colns[c] = Collection( c, location = static)
             except Exception as e:
                 print str(e)
@@ -132,7 +132,6 @@ def prepare_collection_page( col, args, bread):
     dim_args = args.get( 'dim_args')
     if not dim_args:
         dim_args = col.dim_args_default
-    print dim_args
     if dim_args:
         try:
             dim_args = eval( dim_args)
@@ -156,18 +155,6 @@ def prepare_collection_page( col, args, bread):
 ##########################################################
 def prepare_dimensions_page( args, bread):
 
-    # info = { 'cols_comp_dims': [COLNS[c] for c in COLNS if COLNS[c].computes_dimensions()]}
-    # col_name = args.get( 'col_name')
-    # try:
-    #     col = COLNS[col_name]
-    #     dim_args = eval( args.get( 'dim_args'))
-    #     header, table = col.dimension( *dim_args)
-    #     info.update({ 'col': col,
-    #                   'dimensions': table,
-    #                   'table_headers': header,
-    #                   })
-    # except Exception as e:
-    #     info.update( {'error': str(e)})
     args = args.get( 'args')
     info = { 'args': args}
     try:
