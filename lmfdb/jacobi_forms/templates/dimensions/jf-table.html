@@ -1,3 +1,12 @@
+{% macro weight( k) -%}
+{% if 0.5 == k %}
+$\tfrac 12$
+{% else %}
+${{ k|int }}{% if k|int != k %}\tfrac 12{% endif %}$
+{% endif %}
+{%- endmacro %}
+
+
 {% set L = table.keys()[0] %}
 {% set a = table[L] %}
 {% set h_min = (a.keys()|sort)[0] %}
@@ -9,7 +18,7 @@
       <th>Lat.</th>
       <th>$h\backslash k$</th>
       {% for k in a[a.keys()[0]].keys()|sort() %}
-      <th>${{ k|int }}{% if k|int != k %}\tfrac 12{% endif %}$</th>
+      <th>{{ weight(k) }}</th>
       {% endfor %}      
     </tr>
     {% for L in table %}

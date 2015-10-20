@@ -1,44 +1,13 @@
-{#
-{% set lst = table.keys() %}
+{% macro char( h) -%}
+{% if h >= 2 %}
+\big(\varepsilon^{{ h }}\big)
+{% elif h == 1 %}
+\big(\varepsilon\big)
+{% endif %}
+{%- endmacro %}
 
-<p>
-  The following displays data for the following modules of Jacobi forms: 
-  <quote>
-    {% for L in table %}
-    {% set H = table[L] %}
-    {% for h in H %}
-    {% set P = H[h] %}
-    {% for p in P %}
-    {% set J = P[p] %}
-    <a href="">
-      $J_{ {{ p }},L}\big(\varepsilon^{{ h }}\big)$
-    </a>
-    {% endfor %}
-    {% endfor %}
-    {% endfor %}
-  </quote>
-</p>
 
-<p>
-  Here $L$ is
-  {% if table|length > 1 %}
-  one of the following lattices{% else %}the following lattice{% endif %}.
-</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th><th>rank</th><th>Gram matrix</th><th>det.</th><th>level</th>
-    </tr>
-  </thead>
-  {% for L in table %}
-  <tr>
-    <th>${{ L.name() }}$</th><td>${{ L.rank() }}$</td><td>${{ L.gram_matrix()._latex_() }}$</td>
-    <td>${{ L.det() }}$</td><td>${{ L.level() }}$</td>
-  </tr>
-  {% endfor %}
-</table>
-#}
 {% for L in table %}
 {% set H = table[L] %}
 {% for h in H %}
@@ -47,9 +16,9 @@
 {% set J = P[p] %}
 
 {% if L.name()|length <= 10 %}
-<h2>$J_{ \textrm{ {{ p }} },{{ L.name() }} }\big(\varepsilon^{{ h }}\big)$</h2>
+<h2>$J_{ \textrm{ {{ p }} },{{ L.name() }} }{{ char(h) }}$</h2>
 {% else %}
-<h2>$J_{ \textrm{ {{ p }} },L}\big(\varepsilon^{{ h }}\big)$ where $L = {{ L.name() }}$</h2>
+<h2>$J_{ \textrm{ {{ p }} },L}{{ char(h) }}$ where $L = {{ L.name() }}$</h2>
 {% endif %}
 <p>
 <table>

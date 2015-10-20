@@ -29,7 +29,7 @@ def LatticeIndex( x):
           to right and top to bottom
         o a Gram matrix
         o a string representing an integral lattice:
-          A_n, B_n, C_n, D_n, E_6, E_7, E_8, G_2, F_4, Z^n
+          A_n, B_n, C_n, D_n, E_6, E_7, E_8, G_2, F_4, Z^n, Z
     """
 
     # x is a list of the entries of a Gram matrix above the diagonal
@@ -145,6 +145,13 @@ def LatticeIndex( x):
     except:
         pass
 
+    try:
+        # Z
+        assert 'Z' == x
+        return LatticeIndex( [1])
+    except:
+        pass
+    
     # try:
     #     # R^#(h): dual of a lattice spanned by the root system R
     #     # rescaled by the Coxeter number h of R

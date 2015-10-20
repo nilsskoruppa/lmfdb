@@ -15,7 +15,7 @@
 "]"                   return ']'
 "<"                   return '<'
 ">"                   return '>'
-("A_"|"B_"|"C_"|"D_"|"Z^")[1-9]+[0-9]*|"E_6"|"E_7"|"E_8"|"G_2"|"F_4"        return 'STRING'
+("A_"|"B_"|"C_"|"D_"|"Z^")[1-9]+[0-9]*|"E_6"|"E_7"|"E_8"|"G_2"|"F_4|Z"        return 'STRING'
 [a-z]+                return 'NAME'
 ","                   return ","
 ":"                   return ":"

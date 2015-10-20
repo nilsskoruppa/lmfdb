@@ -4,7 +4,13 @@
   \bmod \Z$. Among these weights the first weight $s$ which is greater
   than or equal to the singular weight of $L$ is
   $$
-  s = \left\lceil \frac {n-h}2 \right\rceil + \frac h2.
+  s = \left\lceil \frac {n-h}2 \right\rceil + \frac h2,
+  \quad\text{i.e.}\qquad
+  s =
+  \begin{cases}
+  \frac n2&\text{if $n\equiv h\bmod 2$,}\\
+  \frac {n+1}2&\text{otherwise.}
+  \end{cases}
   $$
   We set
   $$
@@ -51,9 +57,10 @@
 </p>
 
 <p>
-  It is clear that $p_{\textrm{even}}(x)$ and $p_{\textrm{odd}}(x)$ are \textrm{even}
-  polynomials. It can be shown that their degree is always less than
-  or equal to $????$. If $p_{\textrm{even}}(x)=a(10)x^{10}+a(8)x^8+\cdots +
+  It is clear that $p_{\textrm{even}}(x)$ and $p_{\textrm{odd}}(x)$ are even
+  polynomials. It can be shown that their degrees satisfy
+  $$\deg p_{\textrm{even/odd}}(x) \le 10.$$
+  If $p_{\textrm{even}}(x)=a(10)x^{10}+a(8)x^8+\cdots +
   a(2)x^2+a(0)$, then it easy to see that in any basis of
   $J_{\textrm{even},L}(\varepsilon^h)$ over $\C[E_4,E_6]$ the coefficient
   $a(2k)$ equals the number of generators of the given basis whose

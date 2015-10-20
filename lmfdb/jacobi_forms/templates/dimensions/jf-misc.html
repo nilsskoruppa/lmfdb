@@ -11,7 +11,13 @@
   The first weight where $J_{k,L}(\varepsilon^h)$, for given $L$ and $h$, might be different from $0$
   is therefore the weight
   $$
-  k = \left\lceil \frac {n-h}2 \right\rceil + \frac h2.
+  k = \left\lceil \frac {n-h}2 \right\rceil + \frac h2
+  \quad\text{i.e.}\qquad
+  s =
+  \begin{cases}
+  \frac n2&\text{if $n\equiv h\bmod 2$,}\\
+  \frac {n+1}2&\text{otherwise.}
+  \end{cases}
   $$
 </p>
 

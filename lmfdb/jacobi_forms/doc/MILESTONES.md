@@ -12,6 +12,7 @@
 
   * Extend the function 'LatticeIndex()' so to accept more complex
     string initializations.
-
+    DONE
+    
   * Use lattice embedings to construct forms of lattice index.
     Put in db.
