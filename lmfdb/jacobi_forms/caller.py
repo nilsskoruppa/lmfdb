@@ -5,31 +5,10 @@
 import joli
 from sage.rings.rational import Rational
 from sage.rings.integer import Integer
+from parser import LatticeIndex
 
 
-def LatticeIndex( defn):
 
-    try:
-        defn = [2*Integer( defn)]
-    except:
-        pass
-    try:
-        return joli.LatticeIndex( defn)
-    except:
-        pass
-
-    if 'r' == defn[0]:
-        L = LatticeIndex( defn[1])
-        return L.twist( defn[2])
-    if 's' == defn[0]:
-        M = L = LatticeIndex( defn[1])
-        for i in range( 1, defn[2]):
-            M = M.orthogonal_sum( L)
-        return M
-    if '+' == defn[0]:
-        return LatticeIndex( defn[1]).orthogonal_sum( LatticeIndex( defn[2]))
-
-            
 def dimension( nargs):
     
     def fun( k, L, h):
