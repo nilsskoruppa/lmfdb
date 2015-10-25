@@ -16,7 +16,7 @@ from lmfdb.jacobi_forms import jf_logger
 import json
 import StringIO
 import caller
-
+import database_search
 
 COLNS = None
 DB = None
@@ -200,11 +200,20 @@ def prepare_modules_page( args, bread):
 
 
 ##########################################################
-## DIMENSIONS REQUEST
+## THETABLOCK REQUEST
 ##########################################################
 def prepare_thetablocks_page( args, bread):
    
-    info = { 'args': args.get( 'args')}
+
+    args = args.get( 'args')
+    info = { 'args': args}
+
+    try:
+        query = json.loads( args)
+        results = database_search.find( query)
+        info.update( {'table': results})
+    except Exception as e:
+        info.update( {'error': '%s' % str(e)})
     
     bread.append( ('Thetablocks', 'Thetablocks'))
     return render_template( "thetablocks/jf-thetablocks.html",
