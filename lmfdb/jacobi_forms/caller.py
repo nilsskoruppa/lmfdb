@@ -58,3 +58,17 @@ def module( nargs):
 
     table = dict((L, dict((h, dict((p, joli.JoliModule( L, h, parity = p, uterm = None)) for p in ['odd', 'even'] )) for h in chars)) for L in lats)
     return 0, table
+
+
+
+        #     X = a list of lists of equals length with integer entries
+
+        # if multiplicity_notation is true,
+        # the list X describes the thetablock
+        # $\prod_{x\in X} \vartheta_{x[0]}^{x[1]}\eta^{-r}$,
+        # otherwise the block
+        # $\prod_{x\in X} \vartheta_{x[0]*z_1+x[1]*z_2+\cdots}\eta^{-r}$.
+        # Here $r$ is chosen so that the thetablock has smallest weight
+        # (i.e. so that the minimum of it valuaion is strictly smaller $1/24$. 
+
+        # We do not admit an empty list (i.e. the trivial thetablock).

@@ -167,8 +167,14 @@ class Lattice_class (SageObject):
         return self.__space
 
 
+    def signature( self):
+        # A hack: replaces by Sturm chains or so ...
+        f = self.gram_matrix().charpoly()
+        return self.rank() - len([x for x in f.real_roots() if x < 0])
+
+    
     def is_positive( self):
-        pass
+        return self.rank() == self.signature()
 
 
     def is_even( self):

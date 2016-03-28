@@ -13,3 +13,5 @@ from lattice_index import LatticeIndex
 from dimensions import dim_Joli
 
 from jacobi_form_module import JoliModule
+
+from theta_block import ThetaBlock
