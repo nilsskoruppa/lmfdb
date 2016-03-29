@@ -3,7 +3,7 @@
 {% endblock %}
 
 <form action="/JacobiForm/Q/thetablocks" method="get"
-      onSubmit="return pack_args( { 'weight_field': half_ints, 'index_field': index, 'character_field': mod24})">
+      onSubmit="return pack_args( { 'weight_field': half_ints, 'index_field': index, 'character_field': mod24, 'determinant_field': pos_ints, 'rank_field': pos_ints})">
   <input type = "hidden" id = "args" name = "args" />
   <table> 
     <tr>
@@ -14,13 +14,23 @@
       </td>
       <td> 
 	<label>*index(es)</label>
-	<input type="text" id="index_field" placeholder="A_2" required />
+	<input type="text" id="index_field" placeholder="A_2" />
 	<span class="formexample">e.g. 2*(Z<3>+F_4) + [1 1 2]</span>
       </td>
       <td> 
 	<label>character(s)</label>
 	<input type="text" id="character_field" placeholder="0" pattern="[\d\+\,\ ]+" />
 	<span class="formexample">e.g. 2 or 2 4 6 or 0+23 4</span>
+      </td>
+      <td> 
+	<label>determinant(s)</label>
+	<input type="text" id="determinant_field" placeholder="0" pattern="[\d\+\,\ ]+" />
+	<span class="formexample">e.g. 2 or 2 4 6 or 1+10 4</span>
+      </td>
+      <td> 
+	<label>rank(s)</label>
+	<input type="text" id="rank_field" placeholder="0" pattern="[\d\+\,\ ]+" />
+	<span class="formexample">e.g. 2 or 2 4 6 or 1+10 4</span>
       </td>
       <td> 
 	<button type="submit" value="submit">Find</button>

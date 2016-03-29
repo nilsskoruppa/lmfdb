@@ -188,7 +188,7 @@ def prepare_modules_page( args, bread):
         info.update( { 'table': table,
                        'table_headers': header,
                        'viewer': 'modules/jf-table.html'
-                      })
+        })
     except Exception as e:
         info.update( {'error': str(e)})    
     
@@ -211,7 +211,9 @@ def prepare_thetablocks_page( args, bread):
     try:
         query = json.loads( args)
         results = database_search.find( query)
-        info.update( {'table': results})
+        info.update( { 'table': results,
+                       'viewer': 'thetablocks/jf-table.html'
+        })
     except Exception as e:
         info.update( {'error': '%s' % str(e)})
     

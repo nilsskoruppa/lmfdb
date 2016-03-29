@@ -106,6 +106,13 @@ function mod24 ( input) {
 }
 
 
+function pos_ints ( input) {
+
+    var tmp = character_parser.parse( input);
+    tmp = expand( tmp);
+    return tmp;
+}
+
 function expand( lst, mod) {
 
     var nlst = lst.reduce( function(l,x) {
@@ -131,10 +138,10 @@ function expand( lst, mod) {
 	l = l.concat( tmp);
  	return l;
     } , []);
-
     // reduce if necessary
-    if ( typeof mod != "undefined")
+    if ( typeof mod != "undefined") {
 	nlst = nlst.map( function(x) { return x%24});
+    }
     // sort
     nlst.sort( function( a, b){return a-b;})
     // delete duplicates
@@ -242,11 +249,11 @@ case 2:this.$ = $$[$0-1].concat([$$[$0]]);
 break;
 case 3:return $$[$0-1];
 break;
-case 4:this.$ = [parseInt($$[$0-4])%24,parseInt($$[$0-2]),parseInt($$[$0])%24];
+case 4:this.$ = [parseInt($$[$0-4]),parseInt($$[$0-2]),parseInt($$[$0])];
 break;
-case 5:this.$ = [parseInt($$[$0-2])%24,parseInt($$[$0])];
+case 5:this.$ = [parseInt($$[$0-2]),parseInt($$[$0])];
 break;
-case 6:this.$ = [parseInt($$[$0])%24];
+case 6:this.$ = [parseInt($$[$0])];
 break;
 }
 },

@@ -12,15 +12,17 @@ def prepare_query( qargs):
 
     wts = qargs.get( 'weight_field')
 
-    dct = qargs['index_field']
-    lats = []    
-    for name in dct:
-        L = LatticeIndex( dct[name])
-        print L
-        L.name( name)
-        lats.append( L)
-    print lats
+    dct = qargs.get('index_field')
+    if None != dct:
+        lats = []    
+        for name in dct:
+            L = LatticeIndex( dct[name])
+            print L
+            L.name( name)
+            lats.append( L)
     chars = qargs.get( 'character_field')
+    dets = qargs.get( 'determinant_field')
+    ranks = qargs.get( 'rank_field')
 
     def fun( L):
         G = L.gram_matrix()
@@ -29,10 +31,14 @@ def prepare_query( qargs):
     query = {}
     if None != wts:
         query['fl_weight'] = { '$in': wts }
-    query['lattice'] = { '$in': map( fun, lats) }
+    if None != dct:
+        query['lattice'] = { '$in': map( fun, lats) }
     if None != chars:
         query['char'] = { '$in': chars }
-    
+    if None != dets:
+        query['det'] = { '$in': dets }
+    if None != ranks:
+        query['rank'] = { '$in': ranks }
     return query
 
 

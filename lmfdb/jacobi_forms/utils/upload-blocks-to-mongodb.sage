@@ -49,8 +49,14 @@ def upload_to_mongodb( filename, scalar_index = False):
                 else:
                     d,l,e,N,min_val = line.split()
                     l = eval(l)
-                    n = len(l)
+                    n = int((isqrt( 1 + 8*len(l)) - 1)/2)
                     e = map( lambda x:list(x), eval(e))
+                    # e = eval(e)
+                    # tmp = {x:e.count(x) for x in e}
+                    # tmp1 = tmp.keys()
+                    # tmp1.sort()
+                    # e = [ [list(x),tmp[x]] for x in tmp1]
+                    N = int(N)
                     v = sage_eval( min_val)
 
                 r = floor(24*v)
@@ -72,13 +78,13 @@ def upload_to_mongodb( filename, scalar_index = False):
                 # The embedding defines the thetablock uniquely
                 # smpls.remove({'embedding': e})
                 id = smpls.insert( sample)
-
+                print ct
                 ct += 1
                 if ct%10000 == 0: print ct
             client.close()
         except:
             client.close()
-            print 'Error: %s' % sys.exc_info()
+            print 'Error: %s' % sys.exc_info()[0]
             return
 
     print '%s: Done' % filename    
