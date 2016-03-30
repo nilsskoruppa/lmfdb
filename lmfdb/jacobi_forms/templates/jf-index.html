@@ -13,11 +13,7 @@ ${{ k|int }}{% if k|int != k %}\tfrac 12{% endif %}$
   This location provides data concerning Jacobi forms of scalar and lattice index over the elliptic modular group.
 </p> 
 
-<h2>Browse
-  <a class="title" knowl="jf.jacobi_form">
-    Jacobi forms
-  </a>
-</h2>
+<h2>Browse {{KNOWL( 'jf.jacobi_form', title = 'Jacobi forms')}}</h2>
 <p>
   {#
   By weight:
@@ -56,7 +52,7 @@ ${{ k|int }}{% if k|int != k %}\tfrac 12{% endif %}$
 
 </br>
 
-<h2>Browse <a class="title" knowl="jf.module">modules of Jacobi forms</a></h2>
+<h2>Browse {{KNOWL( 'jf.module', title = 'Modules of Jacobi forms')}}</h2>
 <p>
   {#
   {% for col in cols|sort( attribute = 'order') %}
@@ -93,7 +89,7 @@ ${{ k|int }}{% if k|int != k %}\tfrac 12{% endif %}$
   </tr>
   <tr valign="top">
     <td>
-      <h2>Find <a class="title" knowl="jf.theta_blocks">theta blocks</a></h2>
+      <h2>Find {{KNOWL( 'jf.theta_blocks', title = 'Theta blocks')}}</h2>
       <p>{% include 'thetablocks/jf-form.html' %}</p>
       <h2>Find singular forms</h2>
       <p>{% include 'singular_forms/jf-form.html' %}</p>
@@ -144,11 +140,11 @@ for constructing tables using divs #}
     </div>
     <div class="rTableRow">
       <div class="rTableCell">
-	<h2>Find <a class="title" knowl="jf.theta_block">theta blocks</a></h2>
+	<h2>Find {{KNOWL( 'jf.theta_blocks', title = 'Theta blocks')}}</h2>
 	<p>{% include 'thetablocks/jf-form.html' %}</p>
       </div>
       <div class="rTableCell">
-	<h2>Search for <a class="title" knowl="jf.Hecke_eigenform">Hecke eigenforms</a></h2>
+	<h2>Search for {{KNOWL( 'jf.Hecke eigenforms', title = 'Hecke eigenforms')}}</h2>
 	<p>{% include 'eigenforms/jf-form.html' %}</p>
       </div>
     </div>

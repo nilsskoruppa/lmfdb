@@ -43,7 +43,7 @@ def prepare_query( qargs):
 
 
         
-def find( qargs):
+def find( qargs, collection = 'thetablocks'):
     
     query = prepare_query( qargs)
 
@@ -55,6 +55,6 @@ def find( qargs):
     # client.close()
 
     db = DataBase()
-    results = db.find( query, collection = 'thetablocks')
+    results = db.find( query, collection = collection)
     
     return [ x for x in results] + [query]

@@ -27,6 +27,12 @@ function pack_args( desc) {
 }
 
 
+function raw ( input) {
+
+    return input;
+}
+
+
 function half_ints ( input) {
 
     var tmp = weight_parser.parse( input)

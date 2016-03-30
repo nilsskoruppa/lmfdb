@@ -1,6 +1,8 @@
 {% extends 'homepage.html' %}
 {% block content %}
 
+{# <h1> Data for eigenforms</h1> #}
+
 {% if error %}
 <div class="announce error">Error: {{  error }}</div>
 {% else %}
@@ -15,5 +17,8 @@
 
 <h2>New search for eigenforms</h2>
 {% include 'eigenforms/jf-form.html' %}
+
+<h1>Explanations</h1>
+{% include ['eigenforms/jf-misc.html', 'jf-Not_available.html'] %}
 
 {% endblock %}
