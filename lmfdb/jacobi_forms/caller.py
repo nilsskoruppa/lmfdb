@@ -15,7 +15,7 @@ def dimension( nargs):
         try:
             return joli.dim_Joli( k, L, h)
         except NotImplementedError:
-            return '?'
+            return 'n/a'
 
     wts = nargs.get( 'weight_field')
 

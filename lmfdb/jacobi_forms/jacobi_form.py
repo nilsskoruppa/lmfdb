@@ -3,8 +3,8 @@
 # Author: Nils Skoruppa <nils.skoruppa@gmail.com>
 
 from flask import render_template, url_for, request, send_file
-import input_parser
-import dimensions
+# import input_parser
+# import dimensions
 import pickle
 import urllib
 from sage.all_cmdline import *
@@ -109,6 +109,11 @@ def prepare_main_page( bread):
              'cols_with_forms': [COLNS[c] for c in COLNS if len(COLNS[c].members()) > 0],
              'cols_comp_dims': [COLNS[c] for c in COLNS if COLNS[c].computes_dimensions()]
              }
+    info['learnmore'] = [
+        ('Source of the data', url_for('JacobiForm_Q_top_level', page='jf-source')),
+        ('Search for data', url_for('JacobiForm_Q_top_level', page='jf-seach')),
+        ('Range of the database', url_for('JacobiForm_Q_top_level', page='jf-db'))
+    ]
     return render_template( 'jf-index.html',
                             title='Jacobi Forms',
                             bread=bread,
