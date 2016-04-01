@@ -27,7 +27,16 @@ class DataBase():
     def find( self, *dct, **kwargs):
         collection = kwargs.get( 'collection', 'samples')
         col = self.__db[collection]
-        return col.find( *dct)
+        limit = kwargs.get( 'limit')
+        if limit:
+            return col.find( *dct).limit( limit)
+        else:
+            return col.find( *dct)
+        
+    def count( self, *dct, **kwargs):
+        collection = kwargs.get( 'collection', 'samples')
+        col = self.__db[collection]
+        return col.count( *dct)
 
     def __del__( self):
         self.__client.close()

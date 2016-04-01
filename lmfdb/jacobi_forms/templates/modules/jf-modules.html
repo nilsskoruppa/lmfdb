@@ -1,7 +1,11 @@
 {% extends 'homepage.html' %}
 {% block content %}
 
-<h1> Data for modules</h1>
+<h2>New search for modules</h2>
+{% include 'modules/jf-form.html' %}
+
+
+<h2> Search results</h2>
 
 {% if error %}
 <div class="announce error">Error: {{  error }}</div>
@@ -15,10 +19,8 @@
 
 {% endif %}
 
-<h2>New search for modules</h2>
-{% include 'modules/jf-form.html' %}
 
-<h1>Explanations</h1>
+<h2>Explanations</h2>
 {% include ['modules/jf-misc.html', 'jf-Not_available.html'] %}
 
 {% endblock %}

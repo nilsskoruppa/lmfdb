@@ -1,7 +1,10 @@
 {% extends 'homepage.html' %}
 {% block content %}
 
-<h1>Table of dimensions</h1>
+<h2>New search for dimensions</h2>
+{% include 'dimensions/jf-form.html' %}
+
+<h2>Table of dimensions</h2>
 
 {% if error %}
 <div class="announce error">Error: {{  error }}</div>
@@ -15,10 +18,7 @@
 
 {% endif %}
 
-<h2>New search for dimensions</h2>
-{% include 'dimensions/jf-form.html' %}
-
-<h1>Explanations</h1>
+<h2>Explanations</h2>
 {% include ['dimensions/jf-misc.html', 'jf-Not_available.html'] %}
 
 {% endblock %}

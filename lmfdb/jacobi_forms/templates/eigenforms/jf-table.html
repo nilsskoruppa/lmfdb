@@ -9,27 +9,23 @@
 #}
 
 {% for phi in table[:-1] %}
-<h1>Eigenform jf-{{ phi.newform_label }}</h1>
+<h1>Eigenform {{ phi.label() }}</h1>
 
 <h3>Basic properties</h3>
 <p>
   <table>
     <tr>
-      <td>Weight</td><td>{{ phi.weight }}</td>
+      <td>Weight</td><td>{{ phi.weight() }}</td>
     </tr>
     <tr>
-      <td>Lattice</td><td>{{ phi.lattice }}</td>
+      <td>Lattice</td><td>{{ phi.index() }}</td>
     </tr>
     <tr>
       <td>Newform</td><td>yes</td>
     </tr>
     <tr>
       <td>Type</td><td>
-	{% if phi.is_holomorphic %}
-	holomorphic
-	{% else %}
-	skew-holomorphic
-	{% endif %}
+	{{ phi.type() }}
       </td>
     </tr>
     <tr>
@@ -38,9 +34,8 @@
   </table>
 </p>
 
-
 <h3>Field of definition</h3>
-<p>n/a</p>
+<p>${{ phi.field() }}$</p>
 
 
 <h3>Exlicit formula</h3>
@@ -66,12 +61,14 @@
 
 
 <h3>Fourier coefficients</h3>
-{% set f = phi.coefficients %}
+{% set f = phi.coefficients() %}
+{# f.keys() | length #}
 <table>
-  <tr><th>$D,r$</th><th>$c(D,r)$</th></tr>
-  {% for D in f.keys() | sort %}
-  <tr><td>${{ D }}$</td><td>${{ f[D] }}$</td></tr>
+  <tr><th>$D$</th><th>$r$</th><th>$c(D,r)$</th></tr>
+  {% for D,r in f.keys() | sort(reverse=True) %}
+  <tr><td>{{ D }}</td><td>{{ r }}</td><td>{{ f[(D,r)] }}</td></tr>
   {% endfor %}
 </table>
 
 {% endfor %}
+

@@ -42,19 +42,26 @@ def prepare_query( qargs):
     return query
 
 
+# class Response:
+
+#     def __init__( self, qargs, context = 'thetablocks', limit = 100):
         
-def find( qargs, collection = 'thetablocks'):
+#         self._qargs = qargs
+#         self._hits = db.count( query, collection = collection)
+       
+    
+def find( qargs, collection = 'thetablocks', limit = 10):
     
     query = prepare_query( qargs)
-
-    # import lmfdb.base
-    # client = lmfdb.base.getDBConnection()
-    # db = client.jacobi_forms
-    # smpls = db.thetablocks
-    # results = smpls.find( query)
-    # client.close()
-
     db = DataBase()
-    results = db.find( query, collection = collection)
-    
+
+    hits = db.count( query, collection = collection)
+    print '>>>>>>>>>>>>>> %d <<<<<<<<<<<<<<<<<' % hits
+    if hits > limit:
+        results = db.find( query, collection = collection, limit = limit)
+    else:
+        results = db.find( query, collection = collection)
+    if 'eigenforms' == collection:
+        from eigenform import Eigenform 
+        return [ Eigenform(**x) for x in results] + [query]
     return [ x for x in results] + [query]

@@ -224,7 +224,7 @@ def prepare_thetablocks_page( args, bread):
     
     bread.append( ('Thetablocks', 'Thetablocks'))
     return render_template( "thetablocks/jf-thetablocks.html",
-                            title='Thetablocks',
+                            title='Theta blocks',
                             bread=bread, **info)
 
  
@@ -258,7 +258,8 @@ def prepare_eigenforms_page( args, bread):
         info.update( { 'table': results,
                        'viewer': 'eigenforms/jf-table.html'
         })
-        info['friends'] =  [( 'Elliptic modular form', ''), ( 'Number field ', ''), ( 'Ellliptic curve', '')]
+        info['friends'] =  [
+            ( 'Elliptic modular form', ''), ( 'Number field ', ''), ( 'Ellliptic curve', '')]
     except Exception as e:
         info.update( {'error': '%s' % str(e)})
 

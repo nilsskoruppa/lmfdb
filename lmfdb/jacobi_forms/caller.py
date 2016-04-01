@@ -19,7 +19,9 @@ def dimension( nargs):
 
     wts = nargs.get( 'weight_field')
 
-    dct = nargs['index_field']
+    dct = nargs.get('index_field')
+    if None == dct:
+        dct = {u'A_4': u'A_4', u'A_3': u'A_3', u'A_2': u'A_2', u'A_1': u'A_1'}
     lats = []    
     for name in dct:
         L = LatticeIndex( dct[name])
@@ -45,7 +47,9 @@ def dimension( nargs):
 
 def module( nargs):
 
-    dct = nargs['index_field']
+    dct = nargs.get('index_field')
+    if None == dct:
+        dct = {u'A_2': u'A_2'}
     lats = []    
     for name in dct:
         L = LatticeIndex( dct[name])
