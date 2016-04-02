@@ -13,6 +13,7 @@ import dimensions
 from sage.rings.integer import Integer
 from sage.rings.integer_ring import IntegerRing
 from sage.rings.polynomial.polynomial_ring_constructor import PolynomialRing
+from sage.rings.power_series_ring import PowerSeriesRing
 from sage.structure.sage_object import SageObject
 from sage.rings.big_oh import O
 from sage.misc.cachefunc import cached_method
@@ -75,6 +76,10 @@ class JoliModule_class (SageObject):
     def set_uterm( self, d):
         self.__uterm = d
 
+        
+    def uterm( self):
+        return self.__uterm
+    
 
     @cached_method
     def dimension( self, k):
@@ -91,7 +96,7 @@ class JoliModule_class (SageObject):
             return dimensions.dim_Joli( k, self.index(), self.character())
 
 
-    def Poincare_pol( self, var = 'x', uterm = 0):
+    def Poincare_pol( self, var = 'x'):
         """
         Return $s$ and the polynomial $p(x)$ such that
         \[
@@ -126,7 +131,7 @@ class JoliModule_class (SageObject):
         v = PolynomialRing( IntegerRing(), var).gens()[0]
         top = Rational(n/2+12-s).ceil()
         a = dict([ (s+l,self.dimension(s+l)) for l in range(-10,top,2) if l != 0])
-        a[s] = uterm
+        a[s] = self.__uterm if self.__uterm != None else 0
         Poincare_pol = s,\
             sum( (a[s+l]-a[s+l-4]-a[s+l-6]+a[s+l-10])* v**l for l in range(0,top,2))
 
@@ -141,6 +146,17 @@ class JoliModule_class (SageObject):
         return Poincare_pol
 
 
+    def Poincare_series( self, var = 'x', prec = 20):
+        """
+
+        """
+        S = PowerSeriesRing( IntegerRing(), var)
+        S.set_default_prec( prec)
+        v = S.gens()[0]
+        return self.special_weight(), self.Poincare_pol( var)[1]/(1-v**4)/(1-v**6)
+        
+
+        
 
 def JoliModule( L, h, parity = 'odd', uterm = None):
     """

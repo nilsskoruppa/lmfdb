@@ -60,7 +60,24 @@ def module( nargs):
     if None == chars:
         chars = [0]
 
-    table = dict((L, dict((h, dict((p, joli.JoliModule( L, h, parity = p, uterm = None)) for p in ['odd', 'even'] )) for h in chars)) for L in lats)
+    table = dict((L, dict((h, dict((p, joli.JoliModule( L, h, parity = p)) for p in ['odd', 'even'] )) for h in chars)) for L in lats)
+
+    # a hack to get sometimes the special weight
+    has_neg_coeff = lambda f: len( filter( lambda x: x < 0, f.coefficients())) > 0
+    for L in table:
+        for h in table[L]:
+            for p in table[L][h]:
+                M = table[L][h][p]
+                s,f = M.Poincare_pol()
+                x = f.parent().gens()[0]
+                g = 1 - x**4 - x**6 + x**10
+                n = 0
+                while has_neg_coeff(f+n*g):
+                    n += 1
+                if has_neg_coeff(f + (n+1)*g):
+                    M.set_uterm( n)
+    # endhack
+
     return 0, table
 
 

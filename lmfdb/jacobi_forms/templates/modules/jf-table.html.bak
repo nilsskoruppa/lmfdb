@@ -7,6 +7,12 @@
 {%- endmacro %}
 
 
+{% macro with_uterm_correction( a,b) %}
+{% if a !=0  and b != 0 %}
++ (n/a) \cdot (1-x^4-x^6+x^{10})
+{% endif %}
+{% endmacro %}
+
 
 {% for L in table %}
 {% set H = table[L] %}
@@ -14,6 +20,7 @@
 {% set P = H[h] %}
 {% for p in P %}
 {% set J = P[p] %}
+
 
 {% if L.name()|length <= 10 %}
 <h2>$J_{ \textrm{ {{ p }} },{{ L.name() }} }{{ char(h) }}$</h2>
@@ -42,19 +49,8 @@
   <tr><td>Rank</td>  <td>${{ J.rank() }}$</td></tr>
   {% set s,pol = J.Poincare_pol() %}
   <tr><td>Special weight</td>  <td>${{ s }}$</td></tr>
-  <tr><td>Hilbert-Poincar&eacute; polynomial</td>  <td>{% if None == J.uterm() %}$u(1-x^4-x^6+x^{10}+) + {% else %}${% endif %}{{ pol._latex_() }}$</td></tr>
-  <tr>
-    <td>Hilbert-Poincar&eacute; series</td>
-    {% set ps = J.Poincare_series()[1] %}
-
-    <td>
-      {% if 0 == ps %}
-      ${{ ps._latex_() }}$
-      {% else %}
-      $x^{ {{ s }} }\cdot \big( {% if None == J.uterm() %} u  + {% endif %} {{ ps._latex_() }} \big)$
-      {% endif %}
-    </td>
-  </tr>
+  <tr><td>Hilbert-Poincar&eacute; polynomial</td>  <td>$ {{ pol._latex_() }} {{ with_uterm_correction( pol[4], pol[6]) }}$</td></tr>
+  <tr><td>Hilbert-Poincar&eacute; series</td>  <td>?</td></tr>
   <tr><td>Generators</td>  <td>--- Not available ---</td></tr>
 </table>
 </p>
