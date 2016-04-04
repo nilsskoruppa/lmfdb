@@ -4,11 +4,13 @@
 </pre>
 
 <pre>
-{{ table[-1] }}
+{{ response.data }}
 </pre>
 #}
 
-{% for phi in table[:-1] %}
+<p>Results found: {{ response.hits }}</p>
+
+{% for phi in response.data %}
 <h1>Eigenform {{ phi.label() }}</h1>
 
 <h3>Basic properties</h3>

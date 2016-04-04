@@ -54,20 +54,21 @@ $
 </pre>
 
 <pre>
-  {% for it in table[:-1] %}
+  {% for it in response.data %}
   {{ it }}
   <br />
   {% endfor %}
 </pre>
 #}
-
+<p>Results found: {{ response.hits }}</p>
 <p>
+  {% set table = response.data %}
   <table>
     <thead>
       <tr>
 	<th>det.</th><th>lattice</th><th>block</th><th>weight</th><th>char.</th><th>val.</th>
       </tr>
-      {% for it in table[:-1] %}
+      {% for it in table %}
       {% set k = (2*it.fl_weight - it['co-rank'])|int %}
       <tr>
 	<td>{{ it.det }}</td>
