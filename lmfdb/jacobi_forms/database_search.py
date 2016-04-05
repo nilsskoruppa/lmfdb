@@ -44,10 +44,16 @@ def prepare_query( qargs):
 
 class Response:
 
-    def __init__( self, qargs, context = 'thetablocks', limit = 100):
+    SORT = {
+        'thetablocks': [ ('rank', pymongo.ASCENDING), ('det',pymongo.ASCENDING), ('lattice',pymongo.ASCENDING)],
+        'eigenforms': [ ('newform-label', pymongo.ASCENDING)]
+    }
+    
+    def __init__( self, qargs, context = 'thetablocks', skip = 0, limit = 100):
         
-        self._qargs = qargs
+        self.qargs = qargs
         self._context = context
+        self.skip = skip
         self.limit = limit
         self._query = prepare_query( qargs)
         self.hits = self._count()
@@ -60,9 +66,9 @@ class Response:
     def _find( self):
         db = DataBase()
         if self.hits > self.limit:
-            results = db.find( self._query, collection = self._context, limit = self.limit)
+            results = db.find( self._query, collection = self._context, limit = self.limit, skip = self.skip, sort = Response.SORT[self._context])
         else:
-            results = db.find( self._query, collection = self._context)
+            results = db.find( self._query, collection = self._context, sort = Response.SORT[self._context])
         if 'eigenforms' == self._context:
             return [ Eigenform(**x) for x in results]
         return [ x for x in results]

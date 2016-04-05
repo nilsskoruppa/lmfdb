@@ -60,7 +60,16 @@ $
   {% endfor %}
 </pre>
 #}
-<p>Results found: {{ response.hits }}</p>
+
+{% if response.hits <= response.limit %}
+<h2>Results ({{ response.hits }} matches)</h2>
+{% else %}
+<h2> Results (displaying matches {{ response.skip + 1 }}-{{ response.skip + response.limit }} of {{ response.hits }})
+    <a href="#" class="navlink" onclick="submit_form('re-search', {{ response.skip - response.limit }});return false">Previous</A>
+    <a href="#" class="navlink" onclick="submit_form('re-search', {{ response.skip + response.limit }});return false">Next</A>
+</h2>
+{% endif %}
+
 <p>
   {% set table = response.data %}
   <table>

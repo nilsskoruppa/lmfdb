@@ -1,6 +1,29 @@
-function pack_args( desc) {
+function submit_form( form_id, skip) {
 
-    var form = event.target;
+    var form = document.getElementById( form_id);
+    var input = document.createElement( 'input');
+
+    input.type = 'hidden';
+    input.name = 'skip';
+    if( skip < 0) {
+	skip = 0;
+    }
+    input.value = skip;
+    form.appendChild(input);
+    $('form[id='+form_id+']').submit()
+    //form.submit()
+}
+
+
+
+function pack_args( desc, form_id) {
+
+    if( undefined == form_id) {
+	var form = event.target;
+    }
+    else {
+	var form = document.getElementById( form_id);
+    }
     var queryObj = new Object();    
 
     try {

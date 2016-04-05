@@ -27,11 +27,14 @@ class DataBase():
     def find( self, *dct, **kwargs):
         collection = kwargs.get( 'collection', 'samples')
         col = self.__db[collection]
-        limit = kwargs.get( 'limit')
-        if limit:
-            return col.find( *dct).limit( limit)
-        else:
-            return col.find( *dct)
+        limit = kwargs.get( 'limit', 0)
+        skip = kwargs.get( 'skip', 0)
+        sort = kwargs.get( 'sort', None)
+        return col.find( *dct, skip = skip, limit = limit, sort = sort)
+        # if limit:
+        #     return col.find( *dct).limit( limit)
+        # else:
+        #     return col.find( *dct)
         
     def count( self, *dct, **kwargs):
         collection = kwargs.get( 'collection', 'samples')

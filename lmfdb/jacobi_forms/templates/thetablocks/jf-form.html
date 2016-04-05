@@ -4,8 +4,8 @@
 
 {% if not args %}{% set args = {} %}{% endif %}
 
-<form action="/JacobiForm/Q/thetablocks" method="get"
-      onSubmit="return pack_args( { 'weight_field': half_ints, 'index_field': index, 'character_field': mod24, 'determinant_field': pos_ints, 'rank_field': pos_ints})">
+<form id="re-search" action="/JacobiForm/Q/thetablocks" method="get"
+      onSubmit="return pack_args( { 'weight_field': half_ints, 'index_field': index, 'character_field': mod24, 'determinant_field': pos_ints, 'rank_field': pos_ints}, 're-search')">
   <input type = "hidden" id = "args" name = "args" />
   <table> 
     <tr>

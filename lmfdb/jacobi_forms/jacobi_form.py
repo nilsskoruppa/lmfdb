@@ -129,11 +129,12 @@ def prepare_modules_page( args, bread):
 def prepare_thetablocks_page( args, bread):
    
     info = { 'args': args}
+    skip = int(args.get( 'skip', 0))
     args = args.get( 'args')
-
+    
     try:
         query = json.loads( args)
-        response = database_search.Response( query)
+        response = database_search.Response( query, limit = 50, skip = skip)
         info.update( {
             'response' : response,
             'viewer': 'thetablocks/jf-table.html'
@@ -170,11 +171,12 @@ def prepare_singular_forms_page( args, bread):
 def prepare_eigenforms_page( args, bread):
    
     info = { 'args': args}
+    skip = int(args.get( 'skip', 0))
     args = args.get( 'args')
 
     try:
         query = json.loads( args)
-        response = database_search.Response( query, context = 'eigenforms')
+        response = database_search.Response( query, context = 'eigenforms', limit = 2, skip = skip)
         info.update( { 'response': response,
                        'viewer': 'eigenforms/jf-table.html'
         })
