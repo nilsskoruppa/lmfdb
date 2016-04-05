@@ -2,6 +2,8 @@
 <script src = "/static/jf-validate.js"></script>
 {% endblock %}
 
+{% if not args %}{% set args = {} %}{% endif %}
+
 <form action="/JacobiForm/Q/modules" method="get"
       onSubmit="return pack_args( { 'index_field': index, 'character_field': mod24})">
   <input type = "hidden" id = "args" name = "args" />
@@ -11,7 +13,7 @@
 	<label>index(es)</label>
       </td>
       <td>
-	<input type="text" id="index_field" placeholder="A_2" />
+	<input type="text" id="index_field" name="index_field" value="{{ args.index_field }}" placeholder="A_2" />
       </td>
       <td>
 	<span class="formexample">e.g. 2*(Z<3>+F_4) + [1 1 2]</span>
@@ -22,7 +24,7 @@
 	<label>character(s)</label>
       </td>
       <td>
-	<input type="text" id="character_field" placeholder="0" pattern="[\d\+\ ]+" />
+	<input type="text" id="character_field" name="character_field" value="{{ args.character_field }}" placeholder="0" pattern="[\d\+\ ]+" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 2+4 or 0+23,2</span>

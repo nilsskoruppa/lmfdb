@@ -78,8 +78,9 @@ def prepare_main_page( bread):
 ##########################################################
 def prepare_dimensions_page( args, bread):
 
-    args = args.get( 'args')
     info = { 'args': args}
+    args = args.get( 'args')
+
     try:
         nargs = json.loads( args)
         header, table = caller.dimension( nargs)
@@ -102,8 +103,8 @@ def prepare_dimensions_page( args, bread):
 ##########################################################
 def prepare_modules_page( args, bread):
     
-    args = args.get( 'args')
     info = { 'args': args}
+    args = args.get( 'args')
 
     try:
         nargs = json.loads( args)
@@ -127,8 +128,8 @@ def prepare_modules_page( args, bread):
 ##########################################################
 def prepare_thetablocks_page( args, bread):
    
-    args = args.get( 'args')
     info = { 'args': args}
+    args = args.get( 'args')
 
     try:
         query = json.loads( args)
@@ -152,7 +153,8 @@ def prepare_thetablocks_page( args, bread):
 ##########################################################
 def prepare_singular_forms_page( args, bread):
    
-    info = { 'args': args.get( 'args')}
+    info = { 'args': args}
+    args = args.get( 'args')
     
     bread.append( ('Singular forms', 'Singular forms'))
     return render_template( "singular_forms/jf-singular_forms.html",
@@ -167,8 +169,8 @@ def prepare_singular_forms_page( args, bread):
 ##########################################################
 def prepare_eigenforms_page( args, bread):
    
-    args = args.get( 'args')
     info = { 'args': args}
+    args = args.get( 'args')
 
     try:
         query = json.loads( args)

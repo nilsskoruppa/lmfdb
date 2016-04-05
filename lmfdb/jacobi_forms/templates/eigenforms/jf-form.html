@@ -2,8 +2,10 @@
 <script src = "/static/jf-validate.js"></script>
 {% endblock %}
 
+{% if not args %}{% set args = {} %}{% endif %}
+
 <form action="/JacobiForm/Q/eigenforms" method="get"
-      onSubmit="return pack_args({ 'weight_field': half_ints, 'index_field': index, 'eigenvalue_field': raw})">
+      onSubmit="return pack_args({ 'weight_field': half_ints, 'index_field': index, 'eigenvalue_field': raw, 'label_field': raw })">
   <input type = "hidden" id = "args" name = "args" />
   <table> 
     <tr>
@@ -11,7 +13,7 @@
 	<label>weight(s)</label>
       </td>
       <td>
-	<input type="text" id="weight_field" placeholder="6+20" pattern="[\d\.\+\ ]+" />
+	<input type="text" id="weight_field" name="weight_field" value="{{ args.weight_field }}" placeholder="6+20" pattern="[\d\.\+\ ]+" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 20+10 or 20+26 4</span>
@@ -22,7 +24,7 @@
 	<label>index(es)</label>
       </td>
       <td>
-	<input type="text" id="index_field" placeholder="6+20" />
+	<input type="text" id="index_field" name="index_field" value="{{ args.index_field }}" placeholder="6+20" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 20+10 or 20+26 4</span>
@@ -33,7 +35,7 @@
 	<label>eigenvalues(s)</label>
       </td>
       <td>
-	<input type="text" id="eigenvalue_field" placeholder="0" />
+	<input type="text" id="eigenvalue_field" name="eigenvalue_field" value="{{ args.eigenvalue_field }}" placeholder="0" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 2 4 6 or 0+23 4</span>
@@ -44,7 +46,7 @@
 	<label>Label</label>
       </td>
       <td>
-	<input type="text" id="eigenvalue_field" placeholder="jf-11.2.1.a" />
+	<input type="text" id="label_field" name="label_field" value="{{ args.label_field }}" placeholder="jf-11.2.1.a" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 2 4 6 or 0+23 4</span>

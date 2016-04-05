@@ -2,6 +2,8 @@
 <script src = "/static/jf-validate.js"></script>
 {% endblock %}
 
+{% if not args %}{% set args = {} %}{% endif %}
+
 <form action="/JacobiForm/Q/dimensions" method="get"
       onSubmit="return pack_args( { 'weight_field': half_ints, 'index_field': index, 'character_field': mod24})">
   <input type = "hidden" id = "args" name = "args" />
@@ -11,7 +13,7 @@
 	<label>weight(s)</label>
       </td>
       <td>
-	<input type="text" id="weight_field" placeholder="6+20" pattern="[\d\.\+\,\ ]+" />
+	<input type="text" id="weight_field" name="weight_field" value="{{ args.weight_field }}" placeholder="6+20" pattern="[\d\.\+\,\ ]+" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 20+10 or 20+26 4</span>
@@ -19,10 +21,10 @@
     </tr>
     <tr>
       <td> 
-	<label>index</label>
+	<label>index(es)</label>
       </td>
       <td>
-	<input type="text" id="index_field" placeholder="E_6"/>
+	<input type="text" id="index_field" name="index_field" value="{{ args.index_field }}" placeholder="E_6"/>
       </td>
       <td>
 	<span class="formexample">e.g. 2 or [2,1,4] or A_4</span>
@@ -33,7 +35,7 @@
 	<label>character(s)</label>
       </td>
       <td>
-	<input type="text" id="character_field" placeholder="0" pattern="[\d\+\,\ ]+" />
+	<input type="text" id="character_field" name="character_field" value="{{ args.character_field }}" placeholder="0" pattern="[\d\+\,\ ]+" />
       </td>
       <td>
 	<span class="formexample">e.g. 2 or 2 4 6 or 0+23</span>
